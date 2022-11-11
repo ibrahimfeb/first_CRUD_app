@@ -1,8 +1,6 @@
 import {
   Box,
   Flex,
-  Heading,
-  useColorMode,
   TableContainer,
   Table,
   Tbody,
@@ -187,6 +185,7 @@ const DELETE_DEMO_USERS = gql`
 
   // Update Section
   const UpdateDemoUsers = (props) => {
+    const [updateId,setUpdateId] = useState(props.id)
     const [updateFirstName, setUpdateFirstName] = useState(props.first_name);
     const [updateLastName, setUpdateLastName] = useState(props.last_name);
     const [updateAge, setUpdateAge] = useState(props.age);
@@ -204,6 +203,7 @@ const DELETE_DEMO_USERS = gql`
     const onUpdateHandler = () => {
       updateDemoUsers({
         variables: {
+          id:updateId,
           first_name: updateFirstName,
           last_name: updateLastName,
           age: updateAge,
@@ -261,23 +261,17 @@ const DELETE_DEMO_USERS = gql`
                         type="text"
                         id="name"
                         value={updateFirstName}
-                        // {...register("name", { required: true })}
                         placeholder="John Doe"
                         onChange={(e) => setUpdateFirstName(e.target.value)}
                       />
-                      {/* <>{errors.name ? errors.name?.message : ""}</> */}
                     </FormControl>
 
                     <FormControl>
                       <FormLabel mt={2}>Last Name</FormLabel>
                       <Input
                         value={updateLastName}
-                        // {...register("email", {
-                        //   required: "Email is required",
-                        // })}
                         onChange={(e) => setUpdateLastName(e.target.value)}
                       />
-                      {/* <>{errors.email?.message}</> */}
                     </FormControl>
 
                     <FormControl>
@@ -285,10 +279,8 @@ const DELETE_DEMO_USERS = gql`
                       <Input
                         value={updateAge}
                         type="text"
-                        // {...register("role", { required: true })}
                         onChange={(e) => setUpdateAge(e.target.value)}
                       />
-                      {/* <>{errors.role?.message}</> */}
                     </FormControl>
 
                     <FormControl>
@@ -296,10 +288,8 @@ const DELETE_DEMO_USERS = gql`
                       <Input
                         value={updateCountry}
                         type="text"
-                        // {...register("role", { required: true })}
                         onChange={(e) => setUpdateCountry(e.target.value)}
                       />
-                      {/* <>{errors.updateCountry?.message}</> */}
                     </FormControl>
                     <Flex mt={3} ml="auto">
                       <Button
